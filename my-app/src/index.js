@@ -23,6 +23,13 @@ class Board extends React.Component {
       squares: Array(9).fill(null),
     }
   }
+
+  handleClick(i) {
+    const squares = this.state.squares.slice();
+    squares[i] = 'X';
+    this.setState({squares: squares});
+  }
+
   renderSquare(i) {
     return (
       <Square

@@ -3,22 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 
-const Square =  (props) => (
+const Square =  ({value, onClick}) => (
       <button
         className="square"
-        onClick={props.onClick}
+        onClick={onClick}
       >
-        {props.value}
+        {value}
       </button>
     );
 
-const Board =  (props) => {
+const Board =  ({squares, onClick}) => {
 
   function renderSquare(i) {
     return (
       <Square
-      value={props.squares[i]}
-      onClick={() => props.onClick(i)}
+      value={squares[i]}
+      onClick={() => onClick(i)}
         />
     );
   };

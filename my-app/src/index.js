@@ -57,21 +57,18 @@ class Game extends React.Component {
   }
 
   handleClick(i) {
-    const history = this.state.history.slice(
-      0, this.state.stepNumber + 1
-    );
+    const {history: prevHistory, stepNumber, xIsNext} = this.state;
+    const history = prevHistory.slice(0, stepNumber + 1);
     const current = history[history.length - 1];
     const squares = {...current.squares};
     if (calculateWinner(squares) || squares[i]) {
       return;
       }
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
+    squares[i] = xIsNext ? 'X' : 'O';
     this.setState({
-      history: history.concat([{
-        squares: squares,
-      }]),
+      history: history.concat([{squares}]),
       stepNumber: history.length,
-      xIsNext: !this.state.xIsNext,
+      xIsNext: !xIsNext,
     });
   }
 
@@ -83,8 +80,8 @@ class Game extends React.Component {
   }
 
   render() {
-    const history = this.state.history;
-    const current = history[this.state.stepNumber];
+    const {history, stepNumber, xIsNext} =  this.state;
+    const current = history[stepNumber];
     const winner = calculateWinner(current.squares);
     const moves = history.map((_step, move) => {
       const desc = move ?
@@ -100,7 +97,7 @@ class Game extends React.Component {
     if (winner) {
       status = 'Winner: ' + winner;
     } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = 'Next player: ' + (xIsNext ? 'X' : 'O');
     }
 
     return (

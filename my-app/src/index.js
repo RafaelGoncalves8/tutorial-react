@@ -4,22 +4,22 @@ import './index.css';
 
 
 const Square =  ({value, onClick}) => (
-      <button
-        className="square"
-        onClick={onClick}
-      >
-        {value}
-      </button>
-    );
+  <button
+    className="square"
+    onClick={onClick}
+  >
+    {value}
+  </button>
+);
 
 const Board =  ({squares, onClick}) => {
 
   function renderSquare(i) {
     return (
       <Square
-      value={squares[i]}
-      onClick={() => onClick(i)}
-        />
+        value={squares[i]}
+        onClick={() => onClick(i)}
+      />
     );
   };
 
@@ -51,7 +51,7 @@ class Game extends React.Component {
       history: [{
         squares: Array(9).fill(null),
       }],
-       stepNumber: 0,
+      stepNumber: 0,
       xIsNext: true,
     };
   }
